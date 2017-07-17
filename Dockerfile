@@ -18,10 +18,12 @@ RUN wget https://github.com/foss-for-synopsys-dwc-arc-processors/toolchain/relea
  && rm arc_gnu_2016.09_prebuilt_elf32_le_linux_install.tar.gz \
  && mv arc_gnu_2016.09_prebuilt_elf32_le_linux_install /opt/toolchain/arc-elf32
 
-RUN VERSION=0.9.1-rc1 VERSION1=0.9.1-rc wget --quiet  https://github.com/zephyrproject-rtos/meta-zephyr-sdk/releases/download/${VERSION}/zephyr-sdk-${VERSION1}-setup.run \
- && chmod +x zephyr-sdk-${VERSION1}-setup.run \
- && ./zephyr-sdk-${VERSION1}-setup.run --quiet -- -d /opt/sdk/zephyr-sdk-0.9.1 \
- && rm zephyr-sdk-${VERSION1}-setup.run
+ENV SDK_VERSION 0.9.1
+
+RUN wget --quiet https://github.com/zephyrproject-rtos/meta-zephyr-sdk/releases/download/${SDK_VERSION}/zephyr-sdk-0.9.1-setup.run \
+ && chmod +x zephyr-sdk-${SDK_VERSION}-setup.run \
+ && ./zephyr-sdk-${SDK_VERSION}-setup.run --quiet -- -d /opt/sdk/zephyr-sdk-${SDK_VERSION} \
+ && rm zephyr-sdk-${SDK_VERSION}-setup.run
 
 RUN useradd -m -G plugdev buildslave \
  && echo 'buildslave ALL = NOPASSWD: ALL' > /etc/sudoers.d/buildslave \
