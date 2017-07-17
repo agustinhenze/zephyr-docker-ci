@@ -1,6 +1,6 @@
 FROM agustinhenze/zephyr-docker-core
 
-RUN apt-get update && eatmydata apt-get install wget --no-install-recommends -y && rm -rf /var/lib/apt
+RUN apt-get update && eatmydata apt-get install wget bzip2 --no-install-recommends -y && rm -rf /var/lib/apt
 
 RUN wget https://armkeil.blob.core.windows.net/developer/Files/downloads/gnu-rm/6_1-2017q1/gcc-arm-none-eabi-6-2017-q1-update-linux.tar.bz2 \
  && tar xvf gcc-arm-none-eabi-6-2017-q1-update-linux.tar.bz2 \
